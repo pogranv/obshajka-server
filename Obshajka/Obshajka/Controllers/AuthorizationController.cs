@@ -12,11 +12,11 @@ namespace Obshajka.Controllers
     public class AuthorizationController : ControllerBase
     {
 
-        private static readonly IDbManager _dbManager;
+        private static readonly IDbManager _postgresDbManager;
 
         static AuthorizationController()
         {
-            _dbManager = new DbManager.DbManager();
+            _postgresDbManager = new DbManager.PostgresDbManager();
         }
 
         [HttpPost("authorize")]
@@ -24,7 +24,7 @@ namespace Obshajka.Controllers
         {
             try
             {
-                var userId = _dbManager.GetUserIdByEmailAndPassword(emailWithPassword.Email, emailWithPassword.Password);
+                var userId = _postgresDbManager.GetUserIdByEmailAndPassword(emailWithPassword.Email, emailWithPassword.Password);
                 return Ok(userId);
             }
             catch (UserNotFoundException)

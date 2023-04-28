@@ -4,11 +4,10 @@ using System.Collections.Concurrent;
 using System.Net.Mail;
 using System.Net;
 using Obshajka.Models;
-using Obshajka.Postgres;
-using Obshajka.Postgres.Models;
 using Obshajka.VerificationCodeSender;
 using Obshajka.VerificationCodeSender.Interfaces;
 using Obshajka.DbManager;
+using Obshajka.DbManager.Models;
 using Obshajka.VerificationCodeManager.Exceptions;
 using System.Reflection.Metadata;
 
@@ -19,68 +18,74 @@ namespace Obshajka.Controllers
     public class RegistrationController : ControllerBase
     {
         private static IVerificationCodesManager _verificationCodesManager;
-        private static readonly int _codesLifeTimeMinutes = 5; // TODO: поменять
-        private static readonly string _emailSenderHeader = "Общажка akkforfox5@gmail.com";
-        private static readonly string _emailHeader = "Код верификации";
-        private static readonly string _messageBody = $"Здравствуйте!{Environment.NewLine}Ваш код верификации для приложения «Общажка»: ";
-        private static readonly IDbManager _dbManager;
+
+        private static class CodeManagerSettings
+        {
+            public static readonly int codesLifeTimeMinutes = 5;
+            public static readonly string emailSenderHeader = "Общажка akkforfox5@gmail.com";
+            public static readonly string emailHeader = "Код верификации";
+            public static readonly string messageBody = $"Здравствуйте!{Environment.NewLine}Ваш код верификации для приложения «Общажка»: ";
+        }
+
+        private static readonly IDbManager _postgresDbManager;
 
         static RegistrationController()
         {
-            // TODO: класс параметров
-             _verificationCodesManager = new VerificationCodeManager.VerificationCodesManager(_codesLifeTimeMinutes, _emailSenderHeader, _emailHeader, _messageBody);
-            _dbManager = new DbManager.DbManager();
+            var emailParams = new VerificationCodeManager.EmailParams(CodeManagerSettings.emailSenderHeader, CodeManagerSettings.emailHeader, CodeManagerSettings.messageBody);
+             _verificationCodesManager = new VerificationCodeManager.VerificationCodesManager(CodeManagerSettings.codesLifeTimeMinutes, emailParams);
+            _postgresDbManager = new DbManager.PostgresDbManager();
         }
 
-
-
         [HttpPost("verification")]
-        public IActionResult SendVerificationCode([FromBody] NewUser newUser)
+        public IActionResult SendVerificationCode([FromBody] User user)
         {
-            if (_dbManager.CheckUserExist(newUser.Email))
+            if (_postgresDbManager.CheckUserExist(user.Email))
             {
                 return Conflict("Пользователь с такой почтой уже зарегистрирован!");
             }
+
             try
             {
-                _verificationCodesManager.AddUser(newUser);
-                _verificationCodesManager.SendCodeToUser(newUser.Email);
-                
+                _verificationCodesManager.AddUser(user);
+                _verificationCodesManager.SendCodeToUser(user.Email);
+                return Ok();
             }
             catch (UserAlreadyWaitConfirmationException ex)
             {
-                return Conflict($"С момента последнего запроса кода подтверждения должно пройти {_codesLifeTimeMinutes} минут.");
+                return Conflict(ex.Message);
             } 
             catch (UserNotFoundException ex)
             {
-                return NotFound($"С момента последней отправки кода подтверждения прошло больше {_codesLifeTimeMinutes} минут. Повторите запрос на отправку кода подтверждения.");
+                return NotFound(ex.Message);
             } 
             catch (FailSendCodeException ex)
             {
-                return StatusCode(500);
+                return BadRequest(ex.Message);
             }
-            return Ok();
-            // return Ok();
         }
-
-        public record VerificationCodeWithEmail(string Email, string VerificationCode);
+        
 
         [HttpPost("confirmation")]
-        public async Task<IActionResult> ConfirmVerificationCode([FromBody] VerificationCodeWithEmail verificationCodeWithEmail)
+        public IActionResult ConfirmVerificationCode([FromBody] VerificationCodeWithEmail verificationCodeWithEmail)
         {
             long userId;
             try
             {
-                NewUser user = (NewUser)_verificationCodesManager.VerifyUser(verificationCodeWithEmail.Email, verificationCodeWithEmail.VerificationCode);
-                userId = _dbManager.SaveNewUserToDbAndGetId(user);
-                // return Ok(userId);
+                var user = _verificationCodesManager.VerifyUser(verificationCodeWithEmail.Email, verificationCodeWithEmail.VerificationCode);
+                var newUser = new DbManager.Models.User
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    Password = user.Password,
+                };
+                userId = _postgresDbManager.SaveNewUserToDbAndGetId(newUser);
+                return Ok(userId);
             } 
             catch (UserNotFoundException)
             {
                 // TODO: на клиенте обработать пустой ответ
                 return NotFound();
             }
-            return Ok(userId);
         }
     }
 }

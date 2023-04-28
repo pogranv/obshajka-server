@@ -1,0 +1,61 @@
+﻿<Properties StartupConfiguration="{BD2E6AD5-006D-4F22-89D2-9C1667460BAA}|Default">
+  <MonoDevelop.Ide.ItemProperties.Obshajka PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Obshajka/Controllers/AdvertisementsController.cs">
+    <Files>
+      <File FileName="Obshajka/Controllers/AdvertisementsController.cs" Line="15" Column="59" />
+      <File FileName="Obshajka/Controllers/AuthorizationController.cs" Line="28" Column="14" />
+      <File FileName="Obshajka/DbManager/DbManager.cs" Line="70" Column="51" />
+      <File FileName="Obshajka/Controllers/RegistrationController.cs" Line="38" Column="62" />
+      <File FileName="Obshajka/VerificationCodeManager/VerificationCodesManager.cs" Line="52" Column="75" />
+      <File FileName="Obshajka/VerificationCodeManager/EmailParams.cs" Line="4" Column="34" />
+      <File FileName="Obshajka/VerificationCodeManager/Interfaces/IVerificationCodesManager.cs" Line="5" Column="21" />
+      <File FileName="Obshajka/VerificationCodeManager/Interfaces/IUser.cs" Line="1" Column="1" />
+      <File FileName="Obshajka/Models/NewUser.cs" Line="16" Column="36" />
+      <File FileName="Obshajka/DbManager/IDbManager.cs" Line="13" Column="28" />
+      <File FileName="Obshajka/Models/VerificationCodeWithEmail.cs" Line="4" Column="84" />
+      <File FileName="Obshajka/Models/EmailWithPassword.cs" Line="5" Column="1" />
+      <File FileName="Obshajka/Postgres/Models/Advertisement.cs" Line="24" Column="55" />
+      <File FileName="Obshajka/Models/Advertisement.cs" Line="19" Column="45" />
+      <File FileName="Obshajka/YandexDiskApi/ICloudImageStorage.cs" Line="1" Column="1" />
+      <File FileName="Obshajka/YandexDiskApi/YandexDisk.cs" Line="1" Column="1" />
+      <File FileName="Obshajka/VerificationCodeManager/CodeWithDetails.cs" Line="10" Column="17" />
+      <File FileName="Obshajka/Binders/FormDataJsonBinder.cs" Line="1" Column="1" />
+      <File FileName="Obshajka/Controllers/WeatherForecastController.cs" Line="27" Column="73" />
+      <File FileName="Obshajka/Models/AdvertisementFromFront.cs" Line="24" Column="10" />
+      <File FileName="Obshajka/DbManager/Models/Advertisement.cs" Line="31" Column="52" />
+      <File FileName="Obshajka/DbManager/Models/AdvertisementForAdd.cs" Line="28" Column="48" />
+      <File FileName="Obshajka/Models/AdvertDetails.cs" Line="14" Column="6" />
+      <File FileName="Obshajka/DbManager/Models/User.cs" Line="5" Column="3" />
+      <File FileName="Obshajka/Postgres/Models/User.cs" Line="14" Column="50" />
+      <File FileName="Obshajka/Postgres/ObshajkaDbContext.cs" Line="25" Column="83" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Obshajka" expanded="True">
+            <Node name="Obshajka" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="AdvertisementsController.cs" selected="True" />
+              </Node>
+              <Node name="DbManager" expanded="True">
+                <Node name="Models" expanded="True" />
+              </Node>
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Postgres" expanded="True">
+                <Node name="Models" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

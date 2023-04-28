@@ -1,4 +1,6 @@
-﻿namespace Obshajka.VerificationCodeSender.Interfaces
+﻿using Obshajka.Interfaces;
+
+namespace Obshajka.VerificationCodeSender.Interfaces
 {
     public interface IVerificationCodesManager
     {

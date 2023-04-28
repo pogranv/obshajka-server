@@ -14,25 +14,25 @@ namespace Obshajka.Controllers
     [ApiController]
     public class AdvertisementsController : ControllerBase
     {
-        private static readonly ICloudImageStorage _cloudImageStorage;
-        private static readonly IDbManager _dbManager;
+        
+        private static readonly IDbManager _postgresDbManager;
+
         static AdvertisementsController()
         {
-            _cloudImageStorage = new YandexDisk.YandexDisk();
-            _dbManager = new DbManager.DbManager();
+            _postgresDbManager = new DbManager.PostgresDbManager();
         }
 
         [HttpGet("outsides/{dormitoryId:int:min(1)}/{userId:long:min(1)}")]
         public IActionResult GetOutsideAdvertisements(int dormitoryId, long userId)
         {
-            var adverts = _dbManager.GetOutsideAdvertisements(dormitoryId, userId).ToList();
+            var adverts = _postgresDbManager.GetOutsideAdvertisements(dormitoryId, userId).ToList();
             return Ok(adverts);
         }
 
         [HttpGet("my/{userId:long:min(1)}")]
         public IActionResult GetUserAdvertisements(long userId)
         {
-            var adverts = _dbManager.GetUserAdvertisements(userId);
+            var adverts = _postgresDbManager.GetUserAdvertisements(userId);
             return Ok(adverts);
         }
 
@@ -41,7 +41,7 @@ namespace Obshajka.Controllers
         {
             try
             {
-                _dbManager.DeleteAdvertisement(advertisementId);
+                _postgresDbManager.DeleteAdvertisement(advertisementId);
                 return Ok();
             }
             // TODO: на клиенте поддержать исключение
@@ -51,25 +51,21 @@ namespace Obshajka.Controllers
             }
             
         }
-
+        
+        // todo: проверить, что нельзя отправить пустые titile и все остальное
         [HttpPost("add")]
         public async Task<IActionResult> AddAdvertisement([FromForm] AdvertisementFromFront advert)
         {
-            var newAdvertisement = new Postgres.Models.Advertisement();
-
-            newAdvertisement.CreatorId = advert.Details.CreatorId;
-            newAdvertisement.Title = advert.Details.Title;
-            newAdvertisement.Description = advert.Details.Description;
-            newAdvertisement.DormitoryId = advert.Details.DormitoryId;
-            newAdvertisement.Price = advert.Details.Price;
-            if (advert.Image != null)
+            try
             {
-                var imageLink = await _cloudImageStorage.UploadImageAndGetLink(advert.Image);
-                newAdvertisement.Image = imageLink;
+                _postgresDbManager.AddAdvertisement(advert.BuildNewAdvertisement());
+                return Ok();
             }
-            newAdvertisement.DateOfAddition = DateOnly.FromDateTime(DateTime.Now);
-            _dbManager.AddAdvertisement(newAdvertisement);
-            return Ok();
+            catch (UserNotFoundException)
+            {
+                // TODO: jgддержать на фронте
+                return BadRequest();
+            }
         }
     }
 }

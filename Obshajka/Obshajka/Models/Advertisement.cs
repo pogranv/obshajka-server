@@ -1,14 +1,15 @@
-﻿using Obshajka.Interfaces;
+﻿using System;
+using Obshajka.Postgres;
 
-namespace Obshajka.Models
+namespace Obshajka.DbManager.Models
 {
-    public class Advertisement : IAdvertisement
-    {
+	public class Advertisement
+	{
         public long Id { get; set; }
 
-        public string CreatorName { get; set; } = null!;
+        public string CreatorName { get; set; }
 
-        public string Title { get; set; } = null!;
+        public string Title { get; set; }
 
         public string? Description { get; set; }
 
@@ -19,25 +20,6 @@ namespace Obshajka.Models
         public string? Image { get; set; }
 
         public string DateOfAddition { get; set; }
-
-        public static IEnumerable<Advertisement> BuildAdvertisements(IEnumerable<Postgres.Models.Advertisement> advertisements)
-        {
-            List<Advertisement> result = new();
-            foreach (var advertisement in advertisements)
-            {
-                result.Add(new Advertisement
-                {
-                    Id = advertisement.Id,
-                    // CreatorName = advertisement.CreatorName, TODO
-                    Title = advertisement.Title,
-                    Description = advertisement.Description,
-                    DormitoryId = advertisement.DormitoryId,
-                    Price = advertisement.Price,
-                    Image = advertisement.Image,
-                    DateOfAddition = advertisement.DateOfAddition.ToString("d"),
-                });
-            }
-            return result;
-        }
     }
 }
+

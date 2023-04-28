@@ -1,58 +1,116 @@
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\appsettings.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Obshajka.exe
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Obshajka.deps.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Obshajka.runtimeconfig.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Obshajka.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Obshajka.pdb
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Humanizer.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Mono.TextTemplating.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Npgsql.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\System.CodeDom.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\System.Text.Json.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.csproj.AssemblyReference.cache
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.AssemblyInfoInputs.cache
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.AssemblyInfo.cs
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.csproj.CoreCompileInputs.cache
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets\msbuild.Obshajka.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets\msbuild.build.Obshajka.props
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Obshajka.props
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Obshajka.props
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\scopedcss\bundle\Obshajka.styles.css
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.csproj.CopyComplete
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\refint\Obshajka.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.pdb
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.genruntimeconfig.cache
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\obj\Debug\net6.0\ref\Obshajka.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\System.Net.Http.Formatting.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
-C:\Users\Andrei\Desktop\Актуальный сервер\Obshajka\Obshajka\bin\Debug\net6.0\YandexDisk.Client.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/appsettings.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.exe
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.deps.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.runtimeconfig.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.pdb
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Humanizer.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.OpenApi.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Mono.TextTemplating.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Npgsql.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/System.CodeDom.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/System.Text.Encodings.Web.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/System.Text.Json.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.csproj.AssemblyReference.cache
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.AssemblyInfoInputs.cache
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.AssemblyInfo.cs
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.csproj.CoreCompileInputs.cache
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.MvcApplicationPartsAssemblyInfo.cs
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.Obshajka.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.build.Obshajka.props
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Obshajka.props
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Obshajka.props
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets.pack.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/scopedcss/bundle/Obshajka.styles.css
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.csproj.CopyComplete
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/refint/Obshajka.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.pdb
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.genruntimeconfig.cache
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/obj/Debug/net6.0/ref/Obshajka.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/System.Net.Http.Formatting.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Newtonsoft.Json.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll
+C:/Users/Andrei/Desktop/Актуальный сервер/Obshajka/Obshajka/bin/Debug/net6.0/YandexDisk.Client.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.csproj.AssemblyReference.cache
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.GeneratedMSBuildEditorConfig.editorconfig
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.AssemblyInfoInputs.cache
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.AssemblyInfo.cs
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.csproj.CoreCompileInputs.cache
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.MvcApplicationPartsAssemblyInfo.cs
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.MvcApplicationPartsAssemblyInfo.cache
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/refint/Obshajka.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.pdb
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/appsettings.Development.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/appsettings.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.deps.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.runtimeconfig.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Obshajka.pdb
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Humanizer.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/System.Net.Http.Formatting.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Microsoft.OpenApi.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Mono.TextTemplating.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Newtonsoft.Json.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Npgsql.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/System.CodeDom.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/System.Text.Encodings.Web.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/System.Text.Json.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/YandexDisk.Client.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.Obshajka.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.build.Obshajka.props
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Obshajka.props
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Obshajka.props
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets.pack.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets.build.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/staticwebassets.development.json
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/scopedcss/bundle/Obshajka.styles.css
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.csproj.CopyComplete
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/Obshajka.genruntimeconfig.cache
+/Users/pogranv/Desktop/Server/obshajka-server/Obshajka/Obshajka/obj/Debug/net6.0/ref/Obshajka.dll

@@ -1,4 +1,5 @@
-﻿using Obshajka.VerificationCodeSender.Interfaces;
+﻿using Obshajka.Interfaces;
+
 
 namespace Obshajka.VerificationCodeSender
 {
@@ -7,7 +8,7 @@ namespace Obshajka.VerificationCodeSender
     {
         public IUser User { get; }
         public string VerificationCode { get; }
-        DateTime _timeOfCreation;
+        private readonly DateTime _timeOfCreation;
         public CodeWithDetails(IUser user, string verificationCode) 
         {
             User = user;
