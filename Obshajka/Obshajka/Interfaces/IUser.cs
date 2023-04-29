@@ -1,8 +1,9 @@
 ﻿using System;
+
 namespace Obshajka.Interfaces
 {
-	public interface IUser
-	{
+    public interface IUser
+    {
         public string Name { get; }
 
         public string Email { get; }

@@ -1,7 +1,8 @@
 ﻿using System;
+
 using Obshajka.Interfaces;
 
-namespace Obshajka.DbManager.Models
+namespace Obshajka.Models
 {
     public class User : IUser
     {

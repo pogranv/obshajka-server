@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Obshajka.VerificationCodeManager
+
+namespace Obshajka.VerificationCodesManager
 {
 	public sealed record EmailParams(string EmailSenderHeader, string EmailHeader, string MessageBody);
 }

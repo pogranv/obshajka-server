@@ -1,6 +1,6 @@
-﻿using Obshajka.DbManager.Models;
+﻿using Obshajka.Models;
 
-namespace Obshajka.DbManager
+namespace Obshajka.Interfaces
 {
     public interface IDbManager
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Obshajka.Postgres.Models;
+using Obshajka.DbManager.Postgres.Models;
 
-namespace Obshajka.Postgres;
+namespace Obshajka.DbManager.Postgres;
 
 public partial class ObshajkaDbContext : DbContext
 {

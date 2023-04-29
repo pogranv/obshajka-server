@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Obshajka.Postgres;
+
+using Obshajka.Interfaces;
 using Obshajka.Models;
 using Obshajka.DbManager;
 using Obshajka.DbManager.Exceptions;
@@ -11,24 +12,31 @@ namespace Obshajka.Controllers
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
+        private static readonly IDbManager s_postgresDbManager;
 
-        private static readonly IDbManager _postgresDbManager;
+        private readonly ILogger<AuthorizationController> _logger;
 
         static AuthorizationController()
         {
-            _postgresDbManager = new DbManager.PostgresDbManager();
+            s_postgresDbManager = new DbManager.PostgresDbManager();
+        }
+
+        public AuthorizationController()
+        {
+            _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<AuthorizationController>();
         }
 
         [HttpPost("authorize")]
-        public async Task<IActionResult> Autorize([FromBody] EmailWithPassword emailWithPassword)
+        public IActionResult Autorize([FromBody] EmailWithPassword emailWithPassword)
         {
             try
             {
-                var userId = _postgresDbManager.GetUserIdByEmailAndPassword(emailWithPassword.Email, emailWithPassword.Password);
+                var userId = s_postgresDbManager.GetUserIdByEmailAndPassword(emailWithPassword.Email, emailWithPassword.Password);
                 return Ok(userId);
             }
             catch (UserNotFoundException)
             {
+                _logger.LogWarning($"Пользователь с почтой {emailWithPassword.Email} не был авторизован: неправильный логин или пароль");
                 return Unauthorized();
             }
         }

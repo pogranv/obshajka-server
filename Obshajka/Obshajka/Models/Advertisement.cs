@@ -1,7 +1,6 @@
 ﻿using System;
-using Obshajka.Postgres;
 
-namespace Obshajka.DbManager.Models
+namespace Obshajka.Models
 {
 	public class Advertisement
 	{

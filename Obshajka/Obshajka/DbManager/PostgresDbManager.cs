@@ -1,8 +1,9 @@
-﻿using Obshajka.Postgres;
+﻿using Obshajka.DbManager.Postgres;
 using Obshajka.DbManager.Exceptions;
-using Obshajka.Postgres.Models;
+using Obshajka.DbManager.Postgres.Models;
+using Obshajka.Interfaces;
+
 using Obshajka.YandexDiskApi;
-using Obshajka.DbManager.Models;
 
 namespace Obshajka.DbManager
 {
@@ -10,42 +11,19 @@ namespace Obshajka.DbManager
     {
         private static readonly ICloudImageStorage _cloudImageStorage;
 
+        private readonly ILogger<PostgresDbManager> _logger;
+
         static PostgresDbManager()
         {
             _cloudImageStorage = new YandexDisk.YandexDisk();
         }
 
-        private DbManager.Models.Advertisement GetAdvertFromPgModel(Postgres.Models.Advertisement pgAdvert)
+        public PostgresDbManager()
         {
-            return new DbManager.Models.Advertisement
-            {
-                Id = pgAdvert.Id,
-                CreatorName = pgAdvert.Creator.Name, // TODO: сделать загрузку имени
-                Title = pgAdvert.Title,
-                Description = pgAdvert.Description,
-                DormitoryId = pgAdvert.DormitoryId,
-                Price = pgAdvert.Price,
-                Image = pgAdvert.Image,
-                DateOfAddition = pgAdvert.DateOfAddition.ToString(),
-            };
+            _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<PostgresDbManager>();
         }
 
-        private IEnumerable<DbManager.Models.Advertisement> GetAdvertsFromPgModels(IEnumerable<Postgres.Models.Advertisement> pgAdverts)
-        {
-            List<DbManager.Models.Advertisement> result = new();
-            using (ObshajkaDbContext db = new ObshajkaDbContext())
-            {
-                foreach (var pgAdvert in pgAdverts)
-                {
-                    db.Entry<Postgres.Models.Advertisement>(pgAdvert).Reference("Creator").Load();
-                    result.Add(GetAdvertFromPgModel(pgAdvert));
-                }
-                return result;
-            }
-        }
-
-        // TODO: эксепшины кидать
-        public IEnumerable<DbManager.Models.Advertisement> GetOutsideAdvertisements(int dormitoryId, long userId)
+        public IEnumerable<Obshajka.Models.Advertisement> GetOutsideAdvertisements(int dormitoryId, long userId)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
@@ -54,7 +32,7 @@ namespace Obshajka.DbManager
             }
         }
 
-        public IEnumerable<DbManager.Models.Advertisement> GetUserAdvertisements(long userId)
+        public IEnumerable<Obshajka.Models.Advertisement> GetUserAdvertisements(long userId)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
@@ -70,6 +48,7 @@ namespace Obshajka.DbManager
                 Postgres.Models.Advertisement? advert = db.Advertisements.FirstOrDefault(advert => advert.Id == advertId);
                 if (advert == null)
                 {
+                    _logger.LogWarning($"Обявления с id={advertId} нет в базе данных, объявление не было удалено");
                     throw new AdvertisementNotFoundException();
                 }
                 db.Advertisements.Remove(advert);
@@ -77,9 +56,10 @@ namespace Obshajka.DbManager
             }
         }
 
-        private async Task<Postgres.Models.Advertisement> BuildPgAdvertFromNewAdvert(NewAdvertisement newAdvert)
+        private static async Task<Postgres.Models.Advertisement> BuildPgAdvertFromNewAdvert(Models.NewAdvertisement newAdvert)
         {
             var imageLink = await _cloudImageStorage.UploadImageAndGetLink(newAdvert.Image);
+
             return new Postgres.Models.Advertisement
             {
                 CreatorId = newAdvert.CreatorId,
@@ -92,12 +72,14 @@ namespace Obshajka.DbManager
             };
         }
 
-        public async void AddAdvertisement(NewAdvertisement newAdvert)
+        public async void AddAdvertisement(Models.NewAdvertisement newAdvert)
         {
             if (!CheckUserExist(newAdvert.CreatorId))
             {
+                _logger.LogWarning($"Владельца объявления с id={newAdvert.CreatorId} нет в базе данных, объявление не было добавлено");
                 throw new UserNotFoundException();
             }
+
             var pgAdvert = await BuildPgAdvertFromNewAdvert(newAdvert);
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
@@ -112,10 +94,12 @@ namespace Obshajka.DbManager
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
                 var user = db.Users.FirstOrDefault(user => user.Email == email && user.Password == password);
+
                 if (user != null)
                 {
                     return user.Id;
                 }
+
                 throw new UserNotFoundException();
             }
         }
@@ -128,11 +112,13 @@ namespace Obshajka.DbManager
                 Email = newUser.Email,
                 Password = newUser.Password
             };
+
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
                 db.Users.Add(user);
                 db.SaveChanges();
             }
+
             return user.Id;
         }
 
@@ -141,6 +127,7 @@ namespace Obshajka.DbManager
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
                 var user = db.Users.FirstOrDefault(user => user.Email == email);
+
                 if (user != null)
                 {
                     return true;
@@ -159,6 +146,35 @@ namespace Obshajka.DbManager
                     return true;
                 }
                 return false;
+            }
+        }
+
+        private Models.Advertisement GetAdvertFromPgModel(Postgres.Models.Advertisement pgAdvert)
+        {
+            return new Models.Advertisement
+            {
+                Id = pgAdvert.Id,
+                CreatorName = pgAdvert.Creator.Name, // TODO: сделать загрузку имени но вроде норм
+                Title = pgAdvert.Title,
+                Description = pgAdvert.Description,
+                DormitoryId = pgAdvert.DormitoryId,
+                Price = pgAdvert.Price,
+                Image = pgAdvert.Image,
+                DateOfAddition = pgAdvert.DateOfAddition.ToString(),
+            };
+        }
+
+        private IEnumerable<Models.Advertisement> GetAdvertsFromPgModels(IEnumerable<Postgres.Models.Advertisement> pgAdverts)
+        {
+            List<Models.Advertisement> result = new();
+            using (ObshajkaDbContext db = new ObshajkaDbContext())
+            {
+                foreach (var pgAdvert in pgAdverts)
+                {
+                    db.Entry<Postgres.Models.Advertisement>(pgAdvert).Reference("Creator").Load();
+                    result.Add(GetAdvertFromPgModel(pgAdvert));
+                }
+                return result;
             }
         }
 

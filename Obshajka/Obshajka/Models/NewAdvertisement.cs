@@ -1,10 +1,11 @@
 ﻿using System;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Obshajka.Binders;
 using Obshajka.Models;
-using Obshajka.Postgres.Models;
 
-namespace Obshajka.DbManager.Models
+namespace Obshajka.Models
 {
 	public class NewAdvertisement
 	{

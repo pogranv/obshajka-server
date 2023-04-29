@@ -1,6 +1,6 @@
 ﻿using Obshajka.Interfaces;
 
-namespace Obshajka.VerificationCodeSender.Interfaces
+namespace Obshajka.Interfaces
 {
     public interface IVerificationCodesManager
     {

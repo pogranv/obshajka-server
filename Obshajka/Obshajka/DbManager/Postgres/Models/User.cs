@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Obshajka.Postgres.Models;
+namespace Obshajka.DbManager.Postgres.Models;
 
 public partial class User
 {

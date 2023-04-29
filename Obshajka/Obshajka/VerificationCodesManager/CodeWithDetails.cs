@@ -1,7 +1,7 @@
 ﻿using Obshajka.Interfaces;
 
 
-namespace Obshajka.VerificationCodeSender
+namespace Obshajka.VerificationCodesManager
 {
 
     internal class CodeWithDetails

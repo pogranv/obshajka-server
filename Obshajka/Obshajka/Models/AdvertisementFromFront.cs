@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Obshajka.Binders;
-using Obshajka.DbManager.Models;
+﻿using Obshajka.Binders;
+using Obshajka.Models;
 
 namespace Obshajka.Models
 {
