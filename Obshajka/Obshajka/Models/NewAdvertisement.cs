@@ -19,7 +19,7 @@ namespace Obshajka.Models
 
         public int? Price { get; set; }
 
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }
 

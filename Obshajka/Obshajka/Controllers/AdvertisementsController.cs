@@ -30,23 +30,39 @@ namespace Obshajka.Controllers
         [HttpGet("outsides/{dormitoryId:int:min(1)}/{userId:long:min(1)}")]
         public IActionResult GetOutsideAdvertisements(int dormitoryId, long userId)
         {
-            var adverts = _postgresDbManager.GetOutsideAdvertisements(dormitoryId, userId).ToList();
-            if (adverts.Count == 0)
+            try
             {
-                _logger.LogWarning($"По запросу dormitoryId={dormitoryId}, userId={userId} объявлений не найдено");
+                var adverts = _postgresDbManager.GetOutsideAdvertisements(dormitoryId, userId).ToList();
+                if (adverts.Count == 0)
+                {
+                    _logger.LogWarning($"По запросу dormitoryId={dormitoryId}, userId={userId} объявлений не найдено");
+                }
+                return Ok(adverts);
             }
-            return Ok(adverts);
+            catch (UserNotFoundException)
+            {
+                // TODO: обработать на фронте
+                return BadRequest("Указан неверный пользователь");
+            }
         }
 
         [HttpGet("my/{userId:long:min(1)}")]
         public IActionResult GetUserAdvertisements(long userId)
         {
-            var adverts = _postgresDbManager.GetUserAdvertisements(userId).ToList();
-            if (adverts.Count == 0)
+            try
             {
-                _logger.LogWarning($"По запросу userId={userId} объявлений не найдено");
+                var adverts = _postgresDbManager.GetUserAdvertisements(userId).ToList();
+                if (adverts.Count == 0)
+                {
+                    _logger.LogWarning($"По запросу userId={userId} объявлений не найдено");
+                }
+                return Ok(adverts);
             }
-            return Ok(adverts);
+            catch (UserNotFoundException)
+            {
+                // TODO: обработать на фронте
+                return BadRequest("Указан неверный пользователь");
+            }
         }
 
         [HttpDelete("remove/{advertisementId}")]
@@ -66,9 +82,8 @@ namespace Obshajka.Controllers
 
         }
 
-        // todo: проверить, что нельзя отправить пустые titile и все остальное
         [HttpPost("add")]
-        public async Task<IActionResult> AddAdvertisement([FromForm] AdvertisementFromFront advert)
+        public IActionResult AddAdvertisement([FromForm] AdvertisementFromFront advert)
         {
             try
             {

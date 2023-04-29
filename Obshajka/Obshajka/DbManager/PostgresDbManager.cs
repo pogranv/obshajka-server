@@ -1,9 +1,11 @@
-﻿using Obshajka.DbManager.Postgres;
+﻿using Microsoft.EntityFrameworkCore;
+
+using Obshajka.Interfaces;
+using Obshajka.YandexDiskApi;
+
+using Obshajka.DbManager.Postgres;
 using Obshajka.DbManager.Exceptions;
 using Obshajka.DbManager.Postgres.Models;
-using Obshajka.Interfaces;
-
-using Obshajka.YandexDiskApi;
 
 namespace Obshajka.DbManager
 {
@@ -27,16 +29,20 @@ namespace Obshajka.DbManager
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
-                var dbAdverts = db.Advertisements.Where(advert => advert.DormitoryId == dormitoryId && advert.CreatorId != userId).ToList();
+                var dbAdverts = db.Advertisements.Where(advert => advert.DormitoryId == dormitoryId && advert.CreatorId != userId).Include(ad => ad.Creator);
                 return GetAdvertsFromPgModels(dbAdverts);
             }
         }
 
         public IEnumerable<Obshajka.Models.Advertisement> GetUserAdvertisements(long userId)
         {
+            if (!CheckUserExist(userId))
+            {
+                throw new UserNotFoundException();
+            }
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
-                var dbAdverts = db.Advertisements.Where(advert => advert.CreatorId == userId);
+                var dbAdverts = db.Advertisements.Where(advert => advert.CreatorId == userId).Include(ad => ad.Creator);
                 return GetAdvertsFromPgModels(dbAdverts);
             }
         }
@@ -58,18 +64,22 @@ namespace Obshajka.DbManager
 
         private static async Task<Postgres.Models.Advertisement> BuildPgAdvertFromNewAdvert(Models.NewAdvertisement newAdvert)
         {
-            var imageLink = await _cloudImageStorage.UploadImageAndGetLink(newAdvert.Image);
-
-            return new Postgres.Models.Advertisement
+            var pgAdvert = new Postgres.Models.Advertisement
             {
                 CreatorId = newAdvert.CreatorId,
                 Title = newAdvert.Title,
                 Description = newAdvert.Description,
                 DormitoryId = newAdvert.DormitoryId,
                 Price = newAdvert.Price,
-                Image = imageLink,
                 DateOfAddition = DateOnly.FromDateTime(DateTime.Now),
             };
+
+            if (newAdvert.Image != null)
+            {
+               pgAdvert.Image = await _cloudImageStorage.UploadImageAndGetLink(newAdvert.Image);
+            }
+
+            return pgAdvert;
         }
 
         public async void AddAdvertisement(Models.NewAdvertisement newAdvert)
@@ -154,7 +164,7 @@ namespace Obshajka.DbManager
             return new Models.Advertisement
             {
                 Id = pgAdvert.Id,
-                CreatorName = pgAdvert.Creator.Name, // TODO: сделать загрузку имени но вроде норм
+                CreatorName = pgAdvert.Creator.Name,
                 Title = pgAdvert.Title,
                 Description = pgAdvert.Description,
                 DormitoryId = pgAdvert.DormitoryId,
@@ -171,7 +181,6 @@ namespace Obshajka.DbManager
             {
                 foreach (var pgAdvert in pgAdverts)
                 {
-                    db.Entry<Postgres.Models.Advertisement>(pgAdvert).Reference("Creator").Load();
                     result.Add(GetAdvertFromPgModel(pgAdvert));
                 }
                 return result;
