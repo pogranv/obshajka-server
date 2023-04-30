@@ -12,7 +12,6 @@ namespace Obshajka.Controllers
     [ApiController]
     public class AdvertisementsController : ControllerBase
     {
-
         private static readonly IDbManager _postgresDbManager;
 
         private readonly ILogger<AdvertisementsController> _logger;
@@ -30,6 +29,7 @@ namespace Obshajka.Controllers
         [HttpGet("outsides/{dormitoryId:int:min(1)}/{userId:long:min(1)}")]
         public IActionResult GetOutsideAdvertisements(int dormitoryId, long userId)
         {
+            
             try
             {
                 var adverts = _postgresDbManager.GetOutsideAdvertisements(dormitoryId, userId).ToList();
@@ -41,7 +41,6 @@ namespace Obshajka.Controllers
             }
             catch (UserNotFoundException)
             {
-                // TODO: обработать на фронте
                 return BadRequest("Указан неверный пользователь");
             }
         }
@@ -60,7 +59,6 @@ namespace Obshajka.Controllers
             }
             catch (UserNotFoundException)
             {
-                // TODO: обработать на фронте
                 return BadRequest("Указан неверный пользователь");
             }
         }
@@ -73,7 +71,6 @@ namespace Obshajka.Controllers
                 _postgresDbManager.DeleteAdvertisement(advertisementId);
                 return Ok();
             }
-            // TODO: на клиенте поддержать исключение
             catch (AdvertisementNotFoundException)
             {
                 _logger.LogWarning($"Не удалось удалить объявление с id={advertisementId}");

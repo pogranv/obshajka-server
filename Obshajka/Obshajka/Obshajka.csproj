@@ -24,6 +24,5 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="DbManager\YandexDiskApi\" />
-    <Folder Include="DbManager\Postgres\" />
   </ItemGroup>
 </Project>

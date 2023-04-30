@@ -15,13 +15,16 @@ namespace Obshajka.DbManager
 
         private readonly ILogger<PostgresDbManager> _logger;
 
+        public IConfiguration Configuration { get; }
+
         static PostgresDbManager()
         {
             _cloudImageStorage = new YandexDisk.YandexDisk();
         }
 
-        public PostgresDbManager()
+        public PostgresDbManager(/*IConfiguration configuration*/)
         {
+            // System.Configuration.Assemblies.
             _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<PostgresDbManager>();
         }
 

@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Obshajka.DbManager.Postgres.Models;
 
+using Microsoft.Extensions.Configuration;
+using System.Data;
+
 namespace Obshajka.DbManager.Postgres;
 
 public partial class ObshajkaDbContext : DbContext
 {
+
+    private static readonly string s_connectionString;
+
+    static ObshajkaDbContext() 
+    {
+        s_connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build()
+            .GetSection("DbConnectionStrings")["DefaultConnection"];
+    }
     public ObshajkaDbContext()
     {
     }
@@ -21,8 +32,7 @@ public partial class ObshajkaDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=obshajka_db;Username=postgres;Password=andrew7322");
+        => optionsBuilder.UseNpgsql(s_connectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -22,12 +22,11 @@ namespace Obshajka.VerificationCodesManager
 
         private readonly ILogger<VerificationCodesManager> _logger;
 
-        private static class SmtpSettings
+        private static readonly SmtpGmailSettings smtpGmailSettings;
+
+        static VerificationCodesManager()
         {
-            public static readonly string smtpGmailString = "smtp.gmail.com";
-            public static readonly int smtpGmailPort = 587;
-            public static readonly string gmailKey = "lczcijnyiodlgire";
-            public static readonly string emailForSmtp = "akkforfox5@gmail.com";
+            smtpGmailSettings = SmtpGmailSettings.Build();
         }
 
         public VerificationCodesManager(int codesLifeDurationMinutes, EmailParams emailParams)
@@ -43,6 +42,8 @@ namespace Obshajka.VerificationCodesManager
             _emailSenderHeader = emailParams.EmailSenderHeader;
             _emailHeader = emailParams.EmailHeader;
             _messageBody = emailParams.MessageBody;
+
+
         }
 
         private void UpdateVerificationCodes(object obj)
@@ -90,12 +91,12 @@ namespace Obshajka.VerificationCodesManager
                     mailMessage.Subject = _emailHeader;
                     mailMessage.Body = _messageBody + userCode;
                     mailMessage.IsBodyHtml = false;
-                    using (SmtpClient smtpClient = new SmtpClient(SmtpSettings.smtpGmailString, SmtpSettings.smtpGmailPort))
+                    using (SmtpClient smtpClient = new SmtpClient(smtpGmailSettings.SmtpGmailString, smtpGmailSettings.SmtpGmailPort))
                     {
                         smtpClient.EnableSsl = true;
                         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtpClient.UseDefaultCredentials = false;
-                        smtpClient.Credentials = new NetworkCredential(SmtpSettings.emailForSmtp, SmtpSettings.gmailKey);
+                        smtpClient.Credentials = new NetworkCredential(smtpGmailSettings.EmailForSmtp, smtpGmailSettings.GmailKey);
                         smtpClient.Send(mailMessage);
                     }
                 }

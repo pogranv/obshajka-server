@@ -11,11 +11,12 @@ namespace Obshajka.YandexDisk
         private static DiskHttpApi s_api;
 
         private const string _folderName = "Obshajka_Advertisement_Images";
-        private const string _token = "y0_AgAEA7qkJY7BAAkpoAAAAADcsWWswDVBwOCvSB6glBJthBDT9av8wi4";
 
         static YandexDisk()
         {
-            s_api = new DiskHttpApi(_token);
+            var token = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build()
+            .GetSection("YandexDiskConnectionStrings")["token"];
+            s_api = new DiskHttpApi(token);
             CreateImagesDirectoryIfNotExists();
         }
 
