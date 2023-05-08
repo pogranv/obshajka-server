@@ -172,3 +172,5 @@ C:\Users\Andrei\Desktop\Сервер с мака\obshajka-server\Obshajka\Obshaj
 C:\Users\Andrei\Desktop\Сервер с мака\obshajka-server\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.pdb
 C:\Users\Andrei\Desktop\Сервер с мака\obshajka-server\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.genruntimeconfig.cache
 C:\Users\Andrei\Desktop\Сервер с мака\obshajka-server\Obshajka\Obshajka\obj\Debug\net6.0\ref\Obshajka.dll
+C:\Users\Andrei\Desktop\Сервер с мака\obshajka-server\Obshajka\Obshajka\bin\Debug\net6.0\Obshajka.xml
+C:\Users\Andrei\Desktop\Сервер с мака\obshajka-server\Obshajka\Obshajka\obj\Debug\net6.0\Obshajka.xml

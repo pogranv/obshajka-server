@@ -2,7 +2,6 @@
 using YandexDisk.Client.Protocol;
 
 using Obshajka.YandexDiskApi;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Obshajka.YandexDisk
 {
@@ -20,6 +19,11 @@ namespace Obshajka.YandexDisk
             CreateImagesDirectoryIfNotExists();
         }
 
+        /// <summary>
+        /// Метод загружает картинку на Яндекс Диск и возвращает загрузочную ссылку на эту картинку.
+        /// </summary>
+        /// <param name="image">Картинка</param>
+        /// <returns></returns>
         public async Task<string> UploadImageAndGetLink(IFormFile image)
         {
             string pathToImage = MakePathToImage(Path.GetExtension(image.FileName));

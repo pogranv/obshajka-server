@@ -31,7 +31,7 @@ namespace Obshajka.Controllers
             var emailParams = new VerificationCodesManager
                 .EmailParams(CodesManagerSettings.emailSenderHeader, CodesManagerSettings.emailHeader, CodesManagerSettings.messageBody);
             s_verificationCodesManager = new VerificationCodesManager.VerificationCodesManager(CodesManagerSettings.codesLifeTimeMinutes, emailParams);
-            s_postgresDbManager = new DbManager.PostgresDbManager();
+            s_postgresDbManager = new PostgresDbManager();
         }
 
         public RegistrationController()
@@ -39,9 +39,19 @@ namespace Obshajka.Controllers
             _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<RegistrationController>();
         }
 
+        /// <summary>
+        /// Метод отправляет код подтверждения на почту пользователя.
+        /// </summary>
+        /// <param name="user">Пользователь, кому нужно отправить письмо с кодом подтверждения</param>
+        /// <returns></returns>
         [HttpPost("verification")]
         public IActionResult SendVerificationCode([FromBody] User user)
         {
+            if (!user.IsValidEmail())
+            {
+                _logger.LogWarning($"Регистрация не удалась: почта {user.Email} не имеет домена @edu.hse.ru или @hse.ru");
+                return BadRequest($"Регистрация не удалась: почта {user.Email} не имеет домена @edu.hse.ru или @hse.ru");
+            }
             if (s_postgresDbManager.CheckUserExist(user.Email))
             {
                 _logger.LogWarning($"Регистрация не удалась: пользователь с почтой {user.Email} уже зарегистрирован");
@@ -72,14 +82,24 @@ namespace Obshajka.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Метод сверяет код, который был отправлен пользователю с заданным.
+        /// В случае совпадения возвращает идентификатор пользователя.
+        /// </summary>
+        /// <param name="verificationCodeWithEmail">Проверочный код и почта пользователя</param>
+        /// <returns></returns>
         [HttpPost("confirmation")]
         public IActionResult ConfirmVerificationCode([FromBody] VerificationCodeWithEmail verificationCodeWithEmail)
         {
+            if (s_postgresDbManager.CheckUserExist(verificationCodeWithEmail.Email))
+            {
+                _logger.LogWarning($"Регистрация не удалась: пользователь с почтой {verificationCodeWithEmail.Email} уже зарегистрирован");
+                return Conflict("Пользователь с такой почтой уже зарегистрирован!");
+            }
             try
             {
                 var user = s_verificationCodesManager.VerifyUser(verificationCodeWithEmail.Email, verificationCodeWithEmail.VerificationCode);
-                var newUser = new Models.User
+                var newUser = new User
                 {
                     Name = user.Name,
                     Email = user.Email,

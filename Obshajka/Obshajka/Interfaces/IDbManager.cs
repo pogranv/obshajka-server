@@ -10,7 +10,7 @@ namespace Obshajka.Interfaces
 
         public void DeleteAdvertisement(long advertId);
 
-        public void AddAdvertisement(NewAdvertisement advert);
+        public Task AddAdvertisement(NewAdvertisement advert);
 
         public long GetUserIdByEmailAndPassword(string email, string password);
 

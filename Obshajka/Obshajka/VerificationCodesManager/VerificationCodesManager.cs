@@ -18,15 +18,14 @@ namespace Obshajka.VerificationCodesManager
         private readonly string _emailSenderHeader;
         private readonly string _emailHeader;
         private readonly string _messageBody;
-        
 
         private readonly ILogger<VerificationCodesManager> _logger;
 
-        private static readonly SmtpGmailSettings smtpGmailSettings;
+        private static readonly SmtpGmailSettings s_smtpGmailSettings;
 
         static VerificationCodesManager()
         {
-            smtpGmailSettings = SmtpGmailSettings.Build();
+            s_smtpGmailSettings = SmtpGmailSettings.Build();
         }
 
         public VerificationCodesManager(int codesLifeDurationMinutes, EmailParams emailParams)
@@ -42,26 +41,13 @@ namespace Obshajka.VerificationCodesManager
             _emailSenderHeader = emailParams.EmailSenderHeader;
             _emailHeader = emailParams.EmailHeader;
             _messageBody = emailParams.MessageBody;
-
-
         }
 
-        private void UpdateVerificationCodes(object obj)
-        {
-            var toRemoveEmails = _emailToDetails.Where(item => item.Value.IsDurationOfExistsOverdue(_codesLifeTimeMinutes));
-            foreach (var item in toRemoveEmails)
-            {
-                if (_emailToDetails.ContainsKey(item.Key))
-                {
-                    string userEmail = item.Key;
-                    if (_emailToDetails.TryRemove(item))
-                    {
-                        _logger.LogInformation($"{TimeOnly.FromDateTime(DateTime.Now)}: Пользователь {userEmail} не подтвердил свою почту и был удален из очереди ожидания");
-                    }
-                }
-            }
-        }
-
+        /// <summary>
+        /// Метод добавляет пользователя в лист ожидания подтверждения почты.
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        /// <exception cref="UserAlreadyWaitConfirmationException"></exception>
         public void AddUser(IUser user)
         {
             if (_emailToDetails.ContainsKey(user.Email))
@@ -75,6 +61,12 @@ namespace Obshajka.VerificationCodesManager
             _logger.LogInformation($"{TimeOnly.FromDateTime(DateTime.Now)} Пользователь {user.Email} добавлен в очередь ожидания подтверждения почты");
         }
 
+        /// <summary>
+        /// Метод отправляет на укзаанную почту код подтверждения.
+        /// </summary>
+        /// <param name="userEmail">Почта</param>
+        /// <exception cref="UserNotFoundException"></exception>
+        /// <exception cref="FailSendCodeException"></exception>
         public void SendCodeToUser(string userEmail)
         {
             if (string.IsNullOrEmpty(userEmail) || !_emailToDetails.ContainsKey(userEmail))
@@ -83,7 +75,6 @@ namespace Obshajka.VerificationCodesManager
             }
 
             string userCode = _emailToDetails[userEmail].VerificationCode;
-
             try
             {
                 using (MailMessage mailMessage = new MailMessage(_emailSenderHeader, userEmail))
@@ -91,12 +82,12 @@ namespace Obshajka.VerificationCodesManager
                     mailMessage.Subject = _emailHeader;
                     mailMessage.Body = _messageBody + userCode;
                     mailMessage.IsBodyHtml = false;
-                    using (SmtpClient smtpClient = new SmtpClient(smtpGmailSettings.SmtpGmailString, smtpGmailSettings.SmtpGmailPort))
+                    using (SmtpClient smtpClient = new SmtpClient(s_smtpGmailSettings.SmtpGmailString, s_smtpGmailSettings.SmtpGmailPort))
                     {
                         smtpClient.EnableSsl = true;
                         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtpClient.UseDefaultCredentials = false;
-                        smtpClient.Credentials = new NetworkCredential(smtpGmailSettings.EmailForSmtp, smtpGmailSettings.GmailKey);
+                        smtpClient.Credentials = new NetworkCredential(s_smtpGmailSettings.EmailForSmtp, s_smtpGmailSettings.GmailKey);
                         smtpClient.Send(mailMessage);
                     }
                 }
@@ -108,6 +99,14 @@ namespace Obshajka.VerificationCodesManager
             }
         }
 
+        /// <summary>
+        /// Метод сверяет код подтверждения, который был отправлен пользователю с введенным.
+        /// В случае соотвествия возвращает информацию о пользователе.
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <param name="verificationCode"></param>
+        /// <returns></returns>
+        /// <exception cref="UserNotFoundException"></exception>
         public IUser VerifyUser(string userEmail, string verificationCode)
         {
             if (string.IsNullOrEmpty(userEmail) || !_emailToDetails.ContainsKey(userEmail))
@@ -128,6 +127,22 @@ namespace Obshajka.VerificationCodesManager
                 }
             }
             throw new UserNotFoundException($"С момента последней отправки кода подтверждения прошло больше {_codesLifeTimeMinutes} минут. Повторите запрос на отправку кода подтверждения.");
+        }
+
+        private void UpdateVerificationCodes(object obj)
+        {
+            var toRemoveEmails = _emailToDetails.Where(item => item.Value.IsDurationOfExistsOverdue(_codesLifeTimeMinutes));
+            foreach (var item in toRemoveEmails)
+            {
+                if (_emailToDetails.ContainsKey(item.Key))
+                {
+                    string userEmail = item.Key;
+                    if (_emailToDetails.TryRemove(item))
+                    {
+                        _logger.LogInformation($"{TimeOnly.FromDateTime(DateTime.Now)}: Пользователь {userEmail} не подтвердил свою почту и был удален из очереди ожидания");
+                    }
+                }
+            }
         }
     }
 }

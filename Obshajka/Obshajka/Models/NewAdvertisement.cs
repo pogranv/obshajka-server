@@ -1,11 +1,4 @@
-﻿using System;
-
-using Microsoft.AspNetCore.Mvc;
-
-using Obshajka.Binders;
-using Obshajka.Models;
-
-namespace Obshajka.Models
+﻿namespace Obshajka.Models
 {
 	public class NewAdvertisement
 	{

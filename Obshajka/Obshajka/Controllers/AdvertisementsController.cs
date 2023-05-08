@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using Obshajka.DbManager;
 using Obshajka.Interfaces;
@@ -18,7 +17,7 @@ namespace Obshajka.Controllers
 
         static AdvertisementsController()
         {
-            _postgresDbManager = new DbManager.PostgresDbManager();
+            _postgresDbManager = new PostgresDbManager();
         }
 
         public AdvertisementsController()
@@ -26,10 +25,17 @@ namespace Obshajka.Controllers
             _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<AdvertisementsController>();
         }
 
+        /// <summary>
+        /// Метод возвращает объявления в рамках
+        /// заданного общежития, но владельцем которых
+        /// не является заданный пользователь.
+        /// </summary>
+        /// <param name="dormitoryId">id общежития</param>
+        /// <param name="userId">id пользователя</param>
+        /// <returns>Перечисление объявлений</returns>
         [HttpGet("outsides/{dormitoryId:int:min(1)}/{userId:long:min(1)}")]
         public IActionResult GetOutsideAdvertisements(int dormitoryId, long userId)
         {
-            
             try
             {
                 var adverts = _postgresDbManager.GetOutsideAdvertisements(dormitoryId, userId).ToList();
@@ -45,6 +51,12 @@ namespace Obshajka.Controllers
             }
         }
 
+        /// <summary>
+        /// Метод возвращает объявления, владельцем которых
+        /// является заданный пользователь.
+        /// </summary>
+        /// <param name="userId">id пользователя</param>
+        /// <returns></returns>
         [HttpGet("my/{userId:long:min(1)}")]
         public IActionResult GetUserAdvertisements(long userId)
         {
@@ -63,6 +75,11 @@ namespace Obshajka.Controllers
             }
         }
 
+        /// <summary>
+        /// Метод удаляет объявление по заданному идентификатору.
+        /// </summary>
+        /// <param name="advertisementId">id объявления</param>
+        /// <returns></returns>
         [HttpDelete("remove/{advertisementId}")]
         public IActionResult DeleteAdvertisement(int advertisementId)
         {
@@ -79,12 +96,17 @@ namespace Obshajka.Controllers
 
         }
 
+        /// <summary>
+        /// Метод добавляет новое объявление.
+        /// </summary>
+        /// <param name="advert">Объявление, которое нужно добавить</param>
+        /// <returns></returns>
         [HttpPost("add")]
-        public IActionResult AddAdvertisement([FromForm] AdvertisementFromFront advert)
+        public async Task<IActionResult> AddAdvertisement([FromForm] AdvertisementFromFront advert)
         {
             try
             {
-                _postgresDbManager.AddAdvertisement(advert.BuildNewAdvertisement());
+                await _postgresDbManager.AddAdvertisement(advert.BuildNewAdvertisement());
                 return Ok();
             }
             catch (UserNotFoundException)

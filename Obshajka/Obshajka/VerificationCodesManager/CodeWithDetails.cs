@@ -8,6 +8,7 @@ namespace Obshajka.VerificationCodesManager
     {
         public IUser User { get; }
         public string VerificationCode { get; }
+
         private readonly DateTime _timeOfCreation;
         public CodeWithDetails(IUser user, string verificationCode) 
         {

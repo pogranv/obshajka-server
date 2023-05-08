@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Obshajka</name>
+    </assembly>
+    <members>
+        <member name="M:Obshajka.Controllers.AdvertisementsController.GetOutsideAdvertisements(System.Int32,System.Int64)">
+            <summary>
+            Метод возвращает объявления в рамках
+            заданного общежития, но владельцем которых
+            не является заданный пользователь.
+            </summary>
+            <param name="dormitoryId">id общежития</param>
+            <param name="userId">id пользователя</param>
+            <returns>Перечисление объявлений</returns>
+        </member>
+        <member name="M:Obshajka.Controllers.AdvertisementsController.GetUserAdvertisements(System.Int64)">
+            <summary>
+            Метод возвращает объявления, владельцем которых
+            является заданный пользователь.
+            </summary>
+            <param name="userId">id пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.Controllers.AdvertisementsController.DeleteAdvertisement(System.Int32)">
+            <summary>
+            Метод удаляет объявление по заданному идентификатору.
+            </summary>
+            <param name="advertisementId">id объявления</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.Controllers.AdvertisementsController.AddAdvertisement(Obshajka.Models.AdvertisementFromFront)">
+            <summary>
+            Метод добавляет новое объявление.
+            </summary>
+            <param name="advert">Объявление, которое нужно добавить</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.Controllers.AuthorizationController.Autorize(Obshajka.Models.EmailWithPassword)">
+            <summary>
+            Метод возвращает идентификатор пользователя по почте и паролю.
+            </summary>
+            <param name="emailWithPassword">Почта и пароль</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.Controllers.RegistrationController.SendVerificationCode(Obshajka.Models.User)">
+            <summary>
+            Метод отправляет код подтверждения на почту пользователя.
+            </summary>
+            <param name="user">Пользователь, кому нужно отправить письмо с кодом подтверждения</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.Controllers.RegistrationController.ConfirmVerificationCode(Obshajka.Models.VerificationCodeWithEmail)">
+            <summary>
+            Метод сверяет код, который был отправлен пользователю с заданным.
+            В случае совпадения возвращает идентификатор пользователя.
+            </summary>
+            <param name="verificationCodeWithEmail">Проверочный код и почта пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.GetOutsideAdvertisements(System.Int32,System.Int64)">
+            <summary>
+            Метод возвращает из базы данных объявления в рамках
+            заданного общежития, но владельцем которых
+            не является заданный пользователь.
+            </summary>
+            <param name="dormitoryId">id общежития</param>
+            <param name="userId">id пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.GetUserAdvertisements(System.Int64)">
+            <summary>
+            Метод возвращает из базы данных объявления, владельцем которых
+            является заданный пользователь.
+            </summary>
+            <param name="userId">id пользователя</param>
+            <returns></returns>
+            <exception cref="T:Obshajka.DbManager.Exceptions.UserNotFoundException"></exception>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.DeleteAdvertisement(System.Int64)">
+            <summary>
+            Метод удаляет из базы данных объявление по заданному идентификатору.
+            </summary>
+            <param name="advertId">id объявления</param>
+            <exception cref="T:Obshajka.DbManager.Exceptions.AdvertisementNotFoundException"></exception>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.BuildPgAdvertFromNewAdvert(Obshajka.Models.NewAdvertisement)">
+            <summary>
+            Метод строит класс объявления для базы данных.
+            </summary>
+            <param name="newAdvert">Объявление</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.AddAdvertisement(Obshajka.Models.NewAdvertisement)">
+            <summary>
+            Метод добавляет новое объявление в базу данных.
+            </summary>
+            <param name="newAdvert">Объявление</param>
+            <returns></returns>
+            <exception cref="T:Obshajka.DbManager.Exceptions.UserNotFoundException"></exception>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.GetUserIdByEmailAndPassword(System.String,System.String)">
+            <summary>
+            Метод возвращает id пользователя из базы данных по почте и паролю.
+            </summary>
+            <param name="email">Почта</param>
+            <param name="password">Пароль</param>
+            <returns></returns>
+            <exception cref="T:Obshajka.DbManager.Exceptions.UserNotFoundException"></exception>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.SaveNewUserToDbAndGetId(Obshajka.Models.User)">
+            <summary>
+            Метод сохраняет в базу данных пользователя и возвращает его идентификатор.
+            </summary>
+            <param name="newUser">Пользователь</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.CheckUserExist(System.String)">
+            <summary>
+            Метод проверяет существование пользователя в базе данных по почте.
+            </summary>
+            <param name="email">Почта</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.DbManager.PostgresDbManager.CheckUserExist(System.Int64)">
+            <summary>
+            Метод проверяет существование пользователя в базе данных по id.
+            </summary>
+            <param name="userId">id пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:Obshajka.YandexDisk.YandexDisk.UploadImageAndGetLink(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Метод загружает картинку на Яндекс Диск и возвращает загрузочную ссылку на эту картинку.
+            </summary>
+            <param name="image">Картинка</param>
+            <returns></returns>
+        </member>
+        <member name="P:Obshajka.Models.AdvertDetails.CreatorId">
+            <summary>
+            id владельца объявления
+            </summary>
+        </member>
+        <member name="P:Obshajka.Models.AdvertDetails.Title">
+            <summary>
+            Заголовок объявления
+            </summary>
+        </member>
+        <member name="P:Obshajka.Models.AdvertDetails.Description">
+            <summary>
+            Описание объявления
+            </summary>
+        </member>
+        <member name="P:Obshajka.Models.AdvertDetails.DormitoryId">
+            <summary>
+            id общежития, в котором нужно разместить объявление
+            </summary>
+        </member>
+        <member name="P:Obshajka.Models.AdvertDetails.Price">
+            <summary>
+            Цена
+            </summary>
+        </member>
+        <member name="P:Obshajka.Models.AdvertisementFromFront.Image">
+            <summary>
+            Картинка объявления.
+            </summary>
+        </member>
+        <member name="P:Obshajka.Models.AdvertisementFromFront.Details">
+            <summary>
+            Информация об объявлении.
+            </summary>
+        </member>
+        <member name="M:Obshajka.VerificationCodesManager.VerificationCodesManager.AddUser(Obshajka.Interfaces.IUser)">
+            <summary>
+            Метод добавляет пользователя в лист ожидания подтверждения почты.
+            </summary>
+            <param name="user">Пользователь</param>
+            <exception cref="T:Obshajka.VerificationCodesManager.Exceptions.UserAlreadyWaitConfirmationException"></exception>
+        </member>
+        <member name="M:Obshajka.VerificationCodesManager.VerificationCodesManager.SendCodeToUser(System.String)">
+            <summary>
+            Метод отправляет на укзаанную почту код подтверждения.
+            </summary>
+            <param name="userEmail">Почта</param>
+            <exception cref="T:Obshajka.VerificationCodesManager.Exceptions.UserNotFoundException"></exception>
+            <exception cref="T:Obshajka.VerificationCodesManager.Exceptions.FailSendCodeException"></exception>
+        </member>
+        <member name="M:Obshajka.VerificationCodesManager.VerificationCodesManager.VerifyUser(System.String,System.String)">
+            <summary>
+            Метод сверяет код подтверждения, который был отправлен пользователю с введенным.
+            В случае соотвествия возвращает информацию о пользователе.
+            </summary>
+            <param name="userEmail"></param>
+            <param name="verificationCode"></param>
+            <returns></returns>
+            <exception cref="T:Obshajka.VerificationCodesManager.Exceptions.UserNotFoundException"></exception>
+        </member>
+    </members>
+</doc>

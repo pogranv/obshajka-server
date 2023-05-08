@@ -5,30 +5,34 @@ using Obshajka.YandexDiskApi;
 
 using Obshajka.DbManager.Postgres;
 using Obshajka.DbManager.Exceptions;
-using Obshajka.DbManager.Postgres.Models;
 
 namespace Obshajka.DbManager
 {
     public class PostgresDbManager : IDbManager
     {
-        private static readonly ICloudImageStorage _cloudImageStorage;
+        private static readonly ICloudImageStorage s_cloudImageStorage;
 
         private readonly ILogger<PostgresDbManager> _logger;
 
-        public IConfiguration Configuration { get; }
-
         static PostgresDbManager()
         {
-            _cloudImageStorage = new YandexDisk.YandexDisk();
+            s_cloudImageStorage = new YandexDisk.YandexDisk();
         }
 
-        public PostgresDbManager(/*IConfiguration configuration*/)
+        public PostgresDbManager()
         {
-            // System.Configuration.Assemblies.
             _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<PostgresDbManager>();
         }
 
-        public IEnumerable<Obshajka.Models.Advertisement> GetOutsideAdvertisements(int dormitoryId, long userId)
+        /// <summary>
+        /// Метод возвращает из базы данных объявления в рамках
+        /// заданного общежития, но владельцем которых
+        /// не является заданный пользователь.
+        /// </summary>
+        /// <param name="dormitoryId">id общежития</param>
+        /// <param name="userId">id пользователя</param>
+        /// <returns></returns>
+        public IEnumerable<Models.Advertisement> GetOutsideAdvertisements(int dormitoryId, long userId)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
@@ -37,7 +41,14 @@ namespace Obshajka.DbManager
             }
         }
 
-        public IEnumerable<Obshajka.Models.Advertisement> GetUserAdvertisements(long userId)
+        /// <summary>
+        /// Метод возвращает из базы данных объявления, владельцем которых
+        /// является заданный пользователь.
+        /// </summary>
+        /// <param name="userId">id пользователя</param>
+        /// <returns></returns>
+        /// <exception cref="UserNotFoundException"></exception>
+        public IEnumerable<Models.Advertisement> GetUserAdvertisements(long userId)
         {
             if (!CheckUserExist(userId))
             {
@@ -50,6 +61,11 @@ namespace Obshajka.DbManager
             }
         }
 
+        /// <summary>
+        /// Метод удаляет из базы данных объявление по заданному идентификатору.
+        /// </summary>
+        /// <param name="advertId">id объявления</param>
+        /// <exception cref="AdvertisementNotFoundException"></exception>
         public void DeleteAdvertisement(long advertId)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
@@ -65,6 +81,11 @@ namespace Obshajka.DbManager
             }
         }
 
+        /// <summary>
+        /// Метод строит класс объявления для базы данных.
+        /// </summary>
+        /// <param name="newAdvert">Объявление</param>
+        /// <returns></returns>
         private static async Task<Postgres.Models.Advertisement> BuildPgAdvertFromNewAdvert(Models.NewAdvertisement newAdvert)
         {
             var pgAdvert = new Postgres.Models.Advertisement
@@ -79,13 +100,19 @@ namespace Obshajka.DbManager
 
             if (newAdvert.Image != null)
             {
-               pgAdvert.Image = await _cloudImageStorage.UploadImageAndGetLink(newAdvert.Image);
+               pgAdvert.Image = await s_cloudImageStorage.UploadImageAndGetLink(newAdvert.Image);
             }
 
             return pgAdvert;
         }
 
-        public async void AddAdvertisement(Models.NewAdvertisement newAdvert)
+        /// <summary>
+        /// Метод добавляет новое объявление в базу данных.
+        /// </summary>
+        /// <param name="newAdvert">Объявление</param>
+        /// <returns></returns>
+        /// <exception cref="UserNotFoundException"></exception>
+        public async Task AddAdvertisement(Models.NewAdvertisement newAdvert)
         {
             if (!CheckUserExist(newAdvert.CreatorId))
             {
@@ -96,12 +123,18 @@ namespace Obshajka.DbManager
             var pgAdvert = await BuildPgAdvertFromNewAdvert(newAdvert);
             using (ObshajkaDbContext db = new ObshajkaDbContext())
             {
-                // TODO: проверить, корректно ил добавляются имя и id
                 db.Advertisements.Add(pgAdvert);
                 db.SaveChanges();
             }
         }
 
+        /// <summary>
+        /// Метод возвращает id пользователя из базы данных по почте и паролю.
+        /// </summary>
+        /// <param name="email">Почта</param>
+        /// <param name="password">Пароль</param>
+        /// <returns></returns>
+        /// <exception cref="UserNotFoundException"></exception>
         public long GetUserIdByEmailAndPassword(string email, string password)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
@@ -117,6 +150,11 @@ namespace Obshajka.DbManager
             }
         }
 
+        /// <summary>
+        /// Метод сохраняет в базу данных пользователя и возвращает его идентификатор.
+        /// </summary>
+        /// <param name="newUser">Пользователь</param>
+        /// <returns></returns>
         public long SaveNewUserToDbAndGetId(Models.User newUser)
         {
             var user = new Postgres.Models.User
@@ -135,6 +173,11 @@ namespace Obshajka.DbManager
             return user.Id;
         }
 
+        /// <summary>
+        /// Метод проверяет существование пользователя в базе данных по почте.
+        /// </summary>
+        /// <param name="email">Почта</param>
+        /// <returns></returns>
         public bool CheckUserExist(string email)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
@@ -149,6 +192,11 @@ namespace Obshajka.DbManager
             }
         }
 
+        /// <summary>
+        /// Метод проверяет существование пользователя в базе данных по id.
+        /// </summary>
+        /// <param name="userId">id пользователя</param>
+        /// <returns></returns>
         public bool CheckUserExist(long userId)
         {
             using (ObshajkaDbContext db = new ObshajkaDbContext())
@@ -173,7 +221,7 @@ namespace Obshajka.DbManager
                 DormitoryId = pgAdvert.DormitoryId,
                 Price = pgAdvert.Price,
                 Image = pgAdvert.Image,
-                DateOfAddition = pgAdvert.DateOfAddition.ToString(),
+                DateOfAddition = pgAdvert.DateOfAddition.ToString("d"),
             };
         }
 

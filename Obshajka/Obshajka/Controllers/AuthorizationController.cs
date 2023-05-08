@@ -19,6 +19,7 @@ namespace Obshajka.Controllers
         static AuthorizationController()
         {
             s_postgresDbManager = new DbManager.PostgresDbManager();
+            Console.WriteLine("New version2");
         }
 
         public AuthorizationController()
@@ -26,6 +27,11 @@ namespace Obshajka.Controllers
             _logger = LoggerFactory.Create(options => options.AddConsole()).CreateLogger<AuthorizationController>();
         }
 
+        /// <summary>
+        /// Метод возвращает идентификатор пользователя по почте и паролю.
+        /// </summary>
+        /// <param name="emailWithPassword">Почта и пароль</param>
+        /// <returns></returns>
         [HttpPost("authorize")]
         public IActionResult Autorize([FromBody] EmailWithPassword emailWithPassword)
         {

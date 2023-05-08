@@ -5,9 +5,11 @@ networks:
 services:
   app: 
     container_name: obshajka-deploy
-    build:
-      context: .
-      dockerfile: Dockerfile
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    image:
+      pogranv/obshajka-deploy:latest
     ports:
       - "80:80"
     networks:
